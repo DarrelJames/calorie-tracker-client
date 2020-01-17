@@ -2,6 +2,10 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class SignUp extends React.Component {
+  componentWillUnmount() {
+
+  }
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -25,6 +29,7 @@ class SignUp extends React.Component {
 
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
+    this.props.reset()
   };
 
   render() {
