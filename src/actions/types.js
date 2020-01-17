@@ -1,0 +1,6 @@
+export const SIGN_UP = 'SIGN_UP'
+export const LOG_IN = 'LOG_IN'
+export const CREATE_ENTRY = 'CREATE_ENTRY'
+export const UPDATE_ENTRY = 'UPDATE_ENTRY'
+export const DELETE_ENTRY = 'DELETE_ENTRY'
+export const FETCH_LOG = 'FETCH_LOG'
