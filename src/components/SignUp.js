@@ -63,6 +63,10 @@ const validate = formValues => {
     errors.email = 'You must enter a email';
   }
 
+  if (!formValues.password) {
+    errors.password = 'You must enter a password';
+  }
+
   return errors;
 };
 
