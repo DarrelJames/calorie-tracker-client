@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../actions'
 import LogInForm from '../components/LogInForm'
+import SignUpMessage from '../components/SignUpMessage'
 
 class LogIn extends Component {
 
@@ -11,8 +12,11 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div>
-        <LogInForm onSubmit={this.onSubmit}/>
+      <div className='ui middle aligned center aligned grid'>
+        <div className='column' style={{maxWidth: "450px"}}>
+          <LogInForm onSubmit={this.onSubmit}/>
+          <SignUpMessage />
+        </div>
       </div>
     );
   }
