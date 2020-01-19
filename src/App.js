@@ -6,7 +6,7 @@ import LogOut from './components/LogOut'
 import history from './history'
 import Header from './components/Header'
 import LogContainer from './containers/LogContainer'
-
+import FoodForm from './components/FoodForm'
 function App() {
   return (
     <div className="ui container">
@@ -18,6 +18,7 @@ function App() {
             <Route path='/' exact component={LogContainer} />
             <Route path='/login' component={LogIn} />
             <Route path='/signup' component={Registration} />
+            <Route path='/foods/new' component={FoodForm} />
           </Switch>
         </>
       </Router>
