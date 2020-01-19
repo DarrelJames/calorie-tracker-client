@@ -14,7 +14,7 @@ const MealGroup = ({category}) => {
         </tr>
       </thead>
       <tbody>
-        <Food />
+        <Food food={{food: {}}}/>
       </tbody>
       <tfoot>
         <tr>
