@@ -14,8 +14,8 @@ import { searchFood } from '../actions'
       <>
         <FoodForm onSubmit={this.handleSubmit}/>
 
-        <FoodSearchItems foods={this.props.foods} searching={this.props.searching}/>
-        
+        <FoodSearchItems {...this.props} foods={this.props.foods} searching={this.props.searching}/>
+
       </>
     );
   }
