@@ -9,6 +9,7 @@ import Header from './components/Header'
 import LogContainer from './containers/LogContainer'
 import Foods from './containers/Foods'
 import PrivateRoute from './components/PrivateRoute'
+import Account from './containers/Account'
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             <PrivateRoute path='/' exact component={LogContainer} />
             <Route path='/login' component={LogIn} />
             <Route path='/signup' component={Registration} />
-            <PrivateRoute path='/foods/new' component={Foods} />
+            <PrivateRoute path='/entries/new' component={Foods} />
+            <PrivateRoute path='/profile' component={Account} />
 
         </>
       </Router>
