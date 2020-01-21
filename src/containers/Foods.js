@@ -13,7 +13,9 @@ import { searchFood } from '../actions'
     return (
       <>
         <FoodForm onSubmit={this.handleSubmit}/>
-        <FoodSearchItems foods={this.props.foods}/>
+
+        <FoodSearchItems foods={this.props.foods} searching={this.props.searching}/>
+        
       </>
     );
   }
@@ -21,7 +23,7 @@ import { searchFood } from '../actions'
 }
 
 const mapStateToProps = state => {
-  return { foods: state.edamam.foods }
+  return { foods: state.edamam.foods, searching: state.edamam.searching }
 }
 
 export default connect(mapStateToProps, { searchFood })(Foods)
