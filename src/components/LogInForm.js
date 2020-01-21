@@ -3,9 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 
 class LogInForm extends React.Component {
 
-  componentWillUnmount() {
-
-  }
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -56,7 +53,7 @@ class LogInForm extends React.Component {
             />
             <button className="ui button primary">Log In</button>
           </div>
-        </form>      
+        </form>
     );
   }
 }
