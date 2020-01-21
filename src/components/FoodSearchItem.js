@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { createEntry } from '../actions'
 
+
 class FoodSearchItem extends Component {
   constructor(props) {
     super(props)
@@ -44,7 +45,9 @@ class FoodSearchItem extends Component {
    }
 
    handleAddClick = () => {
-     this.props.createEntry(this.state.food)
+     const query = new URLSearchParams(this.props.search)
+
+     this.props.createEntry({category: query.get('category'), foods_attributes: [{...this.state.food}]})
    }
 
    renderAdd = () => {
