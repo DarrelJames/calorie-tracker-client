@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
-import Log from '../components/Log'
+import React, { Component } from 'react'
+// import Log from '../components/Log'
 import MealGroup from './MealGroup'
+import { fetchLogs } from '../actions'
+import { connect } from 'react-redux'
 
-export default class LogContainer extends Component {
+class LogContainer extends Component {
+  // state = {
+  //   date: this.props.logs.logs.date
+  // }
+  componentDidMount() {
+    this.props.fetchLogs()
+  }
 
-  render() {
+  render() {    
     return (
       <div>
+        <div>back</div>
+        <div>back</div>
         <MealGroup category="Breakfast" />
         <MealGroup category="Lunch" />
         <MealGroup category="Dinner" />
@@ -16,3 +26,9 @@ export default class LogContainer extends Component {
   }
 
 }
+
+const mapStateToProps = ({ logs }) => {
+  return {logs}
+}
+
+export default connect(mapStateToProps, { fetchLogs })(LogContainer)
