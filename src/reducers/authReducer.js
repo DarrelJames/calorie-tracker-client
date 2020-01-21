@@ -1,18 +1,19 @@
 import { SIGN_UP, LOG_IN, LOG_OUT } from '../actions/types'
 
 const INITIAL_STATE = {
-  isSignedIn: null,
-  token: null
+  token: localStorage.getItem('token'),
+  error: '',
+  errorStatusCode: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SIGN_UP:
-      return { ...state, isSignedIn: true, token: action.payload }
+      return { ...state, token: action.payload }
     case LOG_IN:
-      return { ...state, isSignedIn: true, token: action.payload }
+      return { ...state, token: action.payload }
     case LOG_OUT:
-      return { ...state, isSignedIn: null, token: null }
+      return { ...state, token: null }
     default:
       return state
   }
