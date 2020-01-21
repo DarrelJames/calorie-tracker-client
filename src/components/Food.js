@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-export default class Food extends Component {
+ const Food = ({label, ENERC_KCAL, PROCNT, FAT, CHOCDF }) => {
 
-  render() {
-    const {name, protein, carbs, fat, calories} = this.props.food
     return (
       <tr>
-        <td>{name}</td>
-        <td>{carbs}</td>
-        <td>{protein}</td>
-        <td>{fat}</td>
-        <td>{calories}</td>
+        <td>{label}</td>
+        <td>{CHOCDF ? Math.ceil(CHOCDF) : null}</td>
+        <td>{PROCNT ? Math.ceil(PROCNT) : null}</td>
+        <td>{FAT ? Math.ceil(FAT) : null}</td>
+        <td>{ENERC_KCAL ? Math.ceil(ENERC_KCAL) : null}</td>
       </tr>
-    );
-  }
-
+    )
 }
+
+export default Food
