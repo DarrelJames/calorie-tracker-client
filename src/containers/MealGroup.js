@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Food from '../components/Food'
 const MealGroup = ({category}) => {
   return (
-    <table class="ui red table">
+    <table className="ui red table">
       <thead>
         <tr>
           <th className='six wide'>{category}</th>
@@ -18,7 +18,7 @@ const MealGroup = ({category}) => {
       </tbody>
       <tfoot>
         <tr>
-          <td><i class="plus icon green"></i><Link to='/foods/new'>Add Food Item</Link></td>
+          <td><i className="plus icon green"></i><Link to='/foods/new'>Add Food Item</Link></td>
         </tr>
       </tfoot>
     </table>
