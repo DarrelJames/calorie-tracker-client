@@ -2,9 +2,15 @@ import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
+const PrivateRoute = ({
+  component: Component,
+  auth,
+  token,
+  errorStatusCode,
+  ...rest
+}) => (
   <Route {...rest} render={ props => (
-    auth.token && auth.errorStatusCode !== 401 ? (
+    token && errorStatusCode !== 401 ? (
       <Component {...props} />
     ) : (
       <Redirect to="/login" />
@@ -12,9 +18,9 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   )}/>
 )
 
-const mapStateToProps = ({ auth }) => ({
-  errorStatusCode: auth.errorStatusCode,
-  token: auth.token
+const mapStateToProps = ({ auth: {token, errorStatusCode} }) => ({
+  errorStatusCode,
+  token
 });
 
 export default withRouter(
