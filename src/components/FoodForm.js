@@ -28,7 +28,7 @@ class FoodForm extends Component {
             className='prompt'
             name='searchTerm'
             placeholder="Search foods..."
-            value={this.state.term}
+            value={this.state.searchTerm}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
             >
