@@ -14,7 +14,7 @@ const Header = () => {
           Today's Log
         </Link>
 
-        <Link to='#' className='item'>
+        <Link to='/profile' className='item'>
           My Account
         </Link>
 
