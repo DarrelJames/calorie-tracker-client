@@ -8,8 +8,9 @@ class MealGroup extends Component {
   renderFoods = () => {
     if (_.isEmpty(this.props.logs.selected_log)) {return}
 
-    const entries = this.props.logs.selected_log.entries.filter(entry => entry.category === this.props.category)    
-     return entries.map(entry => entry.foods.map(food => (<Food key={food.id} {...food} /> )))
+    const entries = this.props.logs.selected_log.entries.filter(entry => entry.category === this.props.category)
+
+    return entries.map(entry => entry.foods.map(food => (<Food key={food.id} {...food} /> )))
   }
   render(){
     return (
