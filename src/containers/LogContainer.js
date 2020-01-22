@@ -1,26 +1,33 @@
 import React, { Component } from 'react'
 // import Log from '../components/Log'
 import MealGroup from './MealGroup'
-import { fetchLogs } from '../actions'
+import { fetchLogs, selectLog } from '../actions'
 import { connect } from 'react-redux'
-
+import _ from 'lodash'
 class LogContainer extends Component {
-  // state = {
-  //   date: this.props.logs.logs.date
-  // }
+
   componentDidMount() {
     this.props.fetchLogs()
   }
 
-  render() {    
+  componentDidUpdate(prevProps) {
+    if (prevProps.logs.selected_log.id !== this.props.logs.selected_log.id || _.isEmpty(prevProps.logs.selected_log)) {
+      this.props.selectLog(this.props.logs.current_log)
+    }
+  }
+
+
+
+  render() {
+
     return (
       <div>
         <div>back</div>
         <div>back</div>
-        <MealGroup category="Breakfast" />
-        <MealGroup category="Lunch" />
-        <MealGroup category="Dinner" />
-        <MealGroup category="Snacks" />
+        <MealGroup category="Breakfast"/>
+        <MealGroup category="Lunch"/>
+        <MealGroup category="Dinner"/>
+        <MealGroup category="Snacks"/>
       </div>
     );
   }
@@ -31,4 +38,4 @@ const mapStateToProps = ({ logs }) => {
   return {logs}
 }
 
-export default connect(mapStateToProps, { fetchLogs })(LogContainer)
+export default connect(mapStateToProps, { fetchLogs, selectLog })(LogContainer)
