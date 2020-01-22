@@ -16,7 +16,7 @@ import {
   SAVE_GOAL,
   SELECT_LOG
 } from './types'
-
+import moment from 'moment'
 export const signUp = formValues => async dispatch => {
   const response = await session.post('/signup', {user: { ...formValues }})
   const token = response.headers.authorization.split(' ')[1]
@@ -64,11 +64,13 @@ export const createEntry = values => async (dispatch,getState) => {
 
 export const fetchLogs = () => async dispatch => {
   const response = await api.get('/logs')
+  console.log(new Date(response.data[0].date) === new Date());
+  const sortedLogs = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
 
   dispatch({type: FETCH_LOGS, payload: response.data})
 }
 
-export const selectLog = (index) => (dispatch, getState) => {  
+export const selectLog = (index) => (dispatch, getState) => {
   const selected_log = getState().logs.logs[index]
 
   dispatch({ type: SELECT_LOG, payload: selected_log })
