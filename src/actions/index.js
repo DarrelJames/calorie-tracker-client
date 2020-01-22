@@ -1,4 +1,5 @@
 import api from '../apis/api'
+import session from '../apis/session'
 import edamam from '../apis/edamam'
 import history from '../history'
 import {
@@ -12,11 +13,12 @@ import {
   SEARCH_FOOD,
   SEARCHING_FOOD,
   FETCH_GOAL,
-  SAVE_GOAL
+  SAVE_GOAL,
+  SELECT_LOG
 } from './types'
 
 export const signUp = formValues => async dispatch => {
-  const response = await api.post('/signup', {user: { ...formValues }})
+  const response = await session.post('/signup', {user: { ...formValues }})
   const token = response.headers.authorization.split(' ')[1]
 
   localStorage.setItem('token', token)
@@ -25,7 +27,7 @@ export const signUp = formValues => async dispatch => {
 }
 
 export const logIn = formValues => async dispatch => {
-  const response = await api.post('/login', {user: { ...formValues }})
+  const response = await session.post('/login', {user: { ...formValues }})
   const token = response.headers.authorization.split(' ')[1]
 
   localStorage.setItem('token', token)
@@ -54,9 +56,8 @@ export const searchFood = searchTerm => async (dispatch) => {
 }
 
 export const createEntry = values => async (dispatch,getState) => {
-  console.log(values);
 
-  const response = await api.post('/entries', {entry: {...values}})
+  // const response = await api.post('/entries', {entry: {...values}})
 
   // dispatch({ type: CREATE_ENTRY})
 }
@@ -65,6 +66,12 @@ export const fetchLogs = () => async dispatch => {
   const response = await api.get('/logs')
 
   dispatch({type: FETCH_LOGS, payload: response.data})
+}
+
+export const selectLog = (index) => (dispatch, getState) => {  
+  const selected_log = getState().logs.logs[index]
+
+  dispatch({ type: SELECT_LOG, payload: selected_log })
 }
 
 export const fetchGoal = () => async dispatch => {
