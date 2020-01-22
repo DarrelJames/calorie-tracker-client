@@ -11,8 +11,7 @@ class Account extends Component {
   handleSubmit = (goalValues) => {
     this.props.saveGoal(goalValues, this.props.goal.id)
   }
-  render() {
-    console.log(this.props);
+  render() {    
     const values = _.pick(this.props.goal, ['carbs', 'protein', 'fat', 'calories'])
     return (
       <div style={{width: '80%', margin: 'auto'}}>
