@@ -10,7 +10,8 @@ import {
   // UPDATE_ENTRY,
   // DELETE_ENTRY,
   FETCH_LOGS,
-  FETCH_LOG,
+  FETCH_LOG_SUCCESS,
+  FETCH_LOG_START,
   SEARCH_FOOD,
   SEARCHING_FOOD,
   FETCH_GOAL,
@@ -70,9 +71,10 @@ export const fetchLogs = () => async dispatch => {
   dispatch({type: FETCH_LOGS, payload: sortedLogs})
 }
 export const fetchLog = (date) => async dispatch => {
-  const response = await api.get(`/logs/${moment(date).format('MM-DD-YYYY')}`)
+  dispatch({ type: FETCH_LOG_START })
+  const response = await api.get(`/logs/${moment(date).format('YYYY-MM-DD')}`)
 
-  dispatch({type: FETCH_LOG, payload: response.data})
+  dispatch({type: FETCH_LOG_SUCCESS, payload: response.data})
 }
 
 export const fetchGoal = () => async dispatch => {

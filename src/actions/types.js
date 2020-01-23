@@ -14,4 +14,5 @@ export const SAVE_GOAL = 'SAVE_GOAL'
 
 
 export const FETCH_LOGS = 'FETCH_LOGS'
-export const FETCH_LOG = 'FETCH_LOG'
+export const FETCH_LOG_START = 'FETCH_LOG_START'
+export const FETCH_LOG_SUCCESS = 'FETCH_LOG_SUCCESS'
