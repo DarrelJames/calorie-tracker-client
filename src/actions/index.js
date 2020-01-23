@@ -72,13 +72,16 @@ export const fetchLogs = () => async dispatch => {
   dispatch({type: FETCH_LOGS, payload: sortedLogs})
 }
 export const fetchLog = (date) => async dispatch => {
-  dispatch({ type: FETCH_LOG_START })
-  const response = await api.get(`/logs/${moment(date).format('YYYY-MM-DD')}`)
+  const formattedDate = moment(date).format('YYYY-MM-DD')
+
+  dispatch({ type: FETCH_LOG_START, payload: formattedDate })
+  const response = await api.get(`/logs/${formattedDate}`)
 
   dispatch({type: FETCH_LOG_SUCCESS, payload: response.data})
 }
 
 export const selectDay = day => {
+  history.push(`/logs/${day}`)
   return {type: SELECT_DAY, payload: day}
 }
 
