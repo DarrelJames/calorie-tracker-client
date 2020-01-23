@@ -10,11 +10,11 @@ import {
   // UPDATE_ENTRY,
   // DELETE_ENTRY,
   FETCH_LOGS,
+  FETCH_LOG,
   SEARCH_FOOD,
   SEARCHING_FOOD,
   FETCH_GOAL,
-  SAVE_GOAL,
-  SELECT_LOG
+  SAVE_GOAL
 } from './types'
 import moment from 'moment'
 export const signUp = formValues => async dispatch => {
@@ -64,16 +64,15 @@ export const createEntry = values => async (dispatch,getState) => {
 
 export const fetchLogs = () => async dispatch => {
   const response = await api.get('/logs')
-  console.log(new Date(response.data[0].date) === new Date());
+
   const sortedLogs = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
 
-  dispatch({type: FETCH_LOGS, payload: response.data})
+  dispatch({type: FETCH_LOGS, payload: sortedLogs})
 }
+export const fetchLog = (date) => async dispatch => {
+  const response = await api.get(`/logs/${moment(date).format('MM-DD-YYYY')}`)
 
-export const selectLog = (index) => (dispatch, getState) => {
-  const selected_log = getState().logs.logs[index]
-
-  dispatch({ type: SELECT_LOG, payload: selected_log })
+  dispatch({type: FETCH_LOG, payload: response.data})
 }
 
 export const fetchGoal = () => async dispatch => {
