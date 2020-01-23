@@ -16,14 +16,14 @@ export default (state = INITIAL_STATE, action ) => {
     case FETCH_LOGS:
       return { ...state , ..._.mapKeys(action.payload, 'date')}
     case FETCH_LOG_START:
-      return { ...state, fetchingLog: true}
+      return { ...state, fetchingLog: true, date: action.payload}
     case FETCH_LOG_SUCCESS:
-      return { ...state, [action.payload.date]: action.payload,logSet: true, fetchingLog: false, date: action.payload.date }
+      return { ...state, [action.payload.date]: action.payload,logSet: true, fetchingLog: false }
     case CREATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
 
     case SELECT_DAY:
-      return { ...state, date: action.payload}
+      return { ...state, date: action.payload, logSet: false}
 
 
     default:
