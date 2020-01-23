@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Food from '../components/Food'
 import { connect } from 'react-redux'
-import _ from 'lodash'
+
 class MealGroup extends Component {
 
   renderFoods = () => {
-    if (_.isEmpty(this.props.logs.selected_log)) {return}
 
-    const entries = this.props.logs.selected_log.entries.filter(entry => entry.category === this.props.category)
+    if ( this.props.logSet){
+      const entries = this.props.log.entries.filter(entry => entry.category === this.props.category)
 
-    return entries.map(entry => entry.foods.map(food => (<Food key={food.id} {...food} /> )))
+      return entries.map(entry => entry.foods.map(food => (<Food key={food.id} {...food} /> )))
+    }
   }
   render(){
     return (
@@ -42,8 +43,9 @@ class MealGroup extends Component {
   }
 }
 
-const mapStateToProps = ({ logs }) => {
-  return {logs}
+const mapStateToProps = (state, ownProps) => {
+
+  return { log: state.logs[state.logs.date], logSet: state.logs.logSet}
 }
 
 export default connect(mapStateToProps)(MealGroup);
