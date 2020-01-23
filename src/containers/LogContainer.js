@@ -19,21 +19,25 @@ class LogContainer extends Component {
 
 
 
-  render() {
 
+  render() {
+    if (this.props.fetchingLog)
+      return <div>Loading</div>
     return (
-      <div>
-        <div>back</div>
-        <div>back</div>
-        <MealGroup category="Breakfast"/>
-        <MealGroup category="Lunch"/>
-        <MealGroup category="Dinner"/>
-        <MealGroup category="Snacks"/>
-      </div>
-    );
+        <div>
+          <div>back</div>
+          <div>back</div>
+          <MealGroup category="Breakfast"/>
+          <MealGroup category="Lunch"/>
+          <MealGroup category="Dinner"/>
+          <MealGroup category="Snacks"/>
+        </div>
+      )
+    }
+
   }
 
-}
+
 
 const mapStateToProps = ({ logs }) => {
   return {logs}
