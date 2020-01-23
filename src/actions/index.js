@@ -6,7 +6,7 @@ import {
   SIGN_UP,
   LOG_IN,
   LOG_OUT,
-  // CREATE_ENTRY,
+  CREATE_ENTRY,
   // UPDATE_ENTRY,
   // DELETE_ENTRY,
   FETCH_LOGS,
@@ -15,7 +15,8 @@ import {
   SEARCH_FOOD,
   SEARCHING_FOOD,
   FETCH_GOAL,
-  SAVE_GOAL
+  SAVE_GOAL,
+  SELECT_DAY
 } from './types'
 import moment from 'moment'
 export const signUp = formValues => async dispatch => {
@@ -57,10 +58,10 @@ export const searchFood = searchTerm => async (dispatch) => {
 }
 
 export const createEntry = values => async (dispatch,getState) => {
+  const response = await api.post('/entries', {log_id: getState().logs[getState().logs.date].id, entry: {...values}})
 
-  // const response = await api.post('/entries', {entry: {...values}})
-
-  // dispatch({ type: CREATE_ENTRY})
+  dispatch({ type: CREATE_ENTRY, payload: response.data})
+  history.push(`/logs/${response.data.date}`)
 }
 
 export const fetchLogs = () => async dispatch => {
@@ -75,6 +76,10 @@ export const fetchLog = (date) => async dispatch => {
   const response = await api.get(`/logs/${moment(date).format('YYYY-MM-DD')}`)
 
   dispatch({type: FETCH_LOG_SUCCESS, payload: response.data})
+}
+
+export const selectDay = day => {
+  return {type: SELECT_DAY, payload: day}
 }
 
 export const fetchGoal = () => async dispatch => {
