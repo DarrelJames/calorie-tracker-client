@@ -14,4 +14,4 @@ export const SAVE_GOAL = 'SAVE_GOAL'
 
 
 export const FETCH_LOGS = 'FETCH_LOGS'
-export const SELECT_LOG = 'SELECT_LOG'
+export const FETCH_LOG = 'FETCH_LOG'
