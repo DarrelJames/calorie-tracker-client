@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { updateEntry, deleteEntry } from '../actions'
+import { debounce } from 'lodash'
 class Food extends React.Component {
 
   constructor(props) {
@@ -22,6 +23,8 @@ class Food extends React.Component {
         carbs: this.carbs * this.props.servings
       }
     }
+
+    this.updateServings = debounce(this.updateServings, 500);
   }
 
     handleTableRowClick = () => {
@@ -42,9 +45,13 @@ class Food extends React.Component {
           }
         }
       }, () => {
-        this.props.updateEntry(this.props.entry_id, this.state.value)
+        this.updateServings()
       })
     }
+
+    updateServings = () => this.props.updateEntry(this.props.entry_id, this.state.value)
+
+
 
     handleEditClick = () => {
 
@@ -70,12 +77,9 @@ class Food extends React.Component {
                       value={this.state.value}
                       onChange={e => this.handleChange(e)}
                     />
+                    <label>Servings (100g)</label>
                   </div>
-                  <div className='field'>
-                    <div onClick={this.handleEditClick} className="ui positive button">
-                      Edit
-                    </div>
-                  </div>
+
                   <div className='field'>
                     <div onClick={this.handleDeleteClick} className="ui negative button">
                       Remove
