@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 
 import Registration from './containers/Registration'
 import LogIn from './containers/LogIn'
@@ -7,7 +7,7 @@ import LogIn from './containers/LogIn'
 import history from './history'
 import Header from './components/Header'
 import LogContainer from './containers/LogContainer'
-import Foods from './containers/Foods'
+import FoodSearch from './containers/FoodSearch'
 import PrivateRoute from './components/PrivateRoute'
 import Account from './containers/Account'
 
@@ -18,10 +18,11 @@ function App() {
         <>
           {/* <LogOut /> */}
           <Header/>
-            <PrivateRoute path='/' exact component={LogContainer} />
+            <PrivateRoute path='/logs' exact component={LogContainer} />
+            <PrivateRoute path='/logs/:date' exact component={LogContainer} />
             <Route path='/login' component={LogIn} />
             <Route path='/signup' component={Registration} />
-            <PrivateRoute path='/entries/new' component={Foods} />
+            <PrivateRoute path='/entries/new' component={FoodSearch} />
             <PrivateRoute path='/profile' component={Account} />
 
         </>
