@@ -1,4 +1,11 @@
-import { FETCH_LOGS, FETCH_LOG_START, FETCH_LOG_SUCCESS, CREATE_ENTRY, SELECT_DAY } from '../actions/types'
+import {
+  FETCH_LOGS,
+  FETCH_LOG_START,
+  FETCH_LOG_SUCCESS,
+  CREATE_ENTRY,
+  SELECT_DAY,
+  UPDATE_ENTRY
+} from '../actions/types'
 import _ from 'lodash'
 import moment from 'moment'
 
@@ -20,6 +27,8 @@ export default (state = INITIAL_STATE, action ) => {
     case FETCH_LOG_SUCCESS:
       return { ...state, [action.payload.date]: action.payload,logSet: true, fetchingLog: false }
     case CREATE_ENTRY:
+      return { ...state, [action.payload.date]: action.payload }
+    case UPDATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
 
     case SELECT_DAY:
