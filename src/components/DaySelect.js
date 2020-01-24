@@ -4,15 +4,21 @@ import history from '../history'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
 export default class DaySelect extends Component {
-  state = {
-      startDate: new Date(this.props.log.date)
-    };
+  constructor(props) {
+    super(props)
+    
+    const [year, month, day] = props.log.date.split('-')
+    this.state = {
+      startDate: new Date(year, month - 1, day)
+    }
+  }
+
 
     handleChange = date => {
       this.setState({
         startDate: date
       })
-      const formattedDate = moment(date).format('YYYY-MM-DD')     
+      const formattedDate = moment(date).format('YYYY-MM-DD')
       this.props.selectDay(formattedDate)
 
     };
