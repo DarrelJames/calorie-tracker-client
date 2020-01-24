@@ -1,28 +1,40 @@
 import React, {Component} from 'react';
-
+import { debounce } from 'lodash'
 class FoodForm extends Component {
 
-  state = {searchTerm: ''}
+  constructor(props) {
+    super(props)
 
-  handleSubmit = (e) => {
-    e.preventDefault()
+    this.state = {
+      searchTerm: ''
+    }
 
-    this.props.onSubmit(this.state.searchTerm)
-    this.setState({searchTerm: ''})
+    this.startSearch = debounce(this.startSearch, 1000)
   }
+
+
+
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: [e.target.value]
+      [e.target.name]: e.target.value
+    }, () => {
+        this.startSearch()
     })
+  }
+
+  startSearch = () => {
+    if (this.state.searchTerm.length > 2) {      
+      this.props.onSubmit(this.state.searchTerm)
+    }
   }
 
   render() {
     return (
       <div className="ui category search" >
 
-      <form onSubmit={this.handleSubmit}>
-      <div className="ui icon input" >
+
+        <div className="ui icon input" >
 
           <input
             className='prompt'
@@ -30,13 +42,13 @@ class FoodForm extends Component {
             placeholder="Search foods..."
             value={this.state.searchTerm}
             onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
-            >
+
+          >
           </input>
 
           <i className="search icon"> </i>
         </div>
-        </form>
+
 
       </div>
     )
