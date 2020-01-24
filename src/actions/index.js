@@ -8,7 +8,7 @@ import {
   LOG_OUT,
   CREATE_ENTRY,
   UPDATE_ENTRY,
-  // DELETE_ENTRY,
+  DELETE_ENTRY,
   FETCH_LOGS,
   FETCH_LOG_SUCCESS,
   FETCH_LOG_START,
@@ -68,6 +68,11 @@ export const updateEntry = (entry_id , value) => async dispatch => {
   const response = await api.patch(`/entries/${entry_id}`, {servings: value})
 
   dispatch({ type: UPDATE_ENTRY, payload: response.data})
+}
+export const deleteEntry = (entry_id) => async dispatch => {
+  const response = await api.delete(`/entries/${entry_id}`)
+
+  dispatch({ type: DELETE_ENTRY, payload: response.data})
 }
 
 export const fetchLogs = () => async dispatch => {

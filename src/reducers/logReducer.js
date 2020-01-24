@@ -3,6 +3,7 @@ import {
   FETCH_LOG_START,
   FETCH_LOG_SUCCESS,
   CREATE_ENTRY,
+  DELETE_ENTRY,
   SELECT_DAY,
   UPDATE_ENTRY
 } from '../actions/types'
@@ -29,6 +30,8 @@ export default (state = INITIAL_STATE, action ) => {
     case CREATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
     case UPDATE_ENTRY:
+      return { ...state, [action.payload.date]: action.payload }
+    case DELETE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
 
     case SELECT_DAY:
