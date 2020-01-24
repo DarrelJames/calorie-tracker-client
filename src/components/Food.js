@@ -2,18 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { updateEntry, deleteEntry } from '../actions'
 class Food extends React.Component {
-    state = {
+
+  constructor(props) {
+    super(props)
+
+    this.fat = props.fat
+    this.protein = props.protein
+    this.calories = props.calories
+    this.carbs = props.carbs
+
+    this.state = {
       visible: false,
       value: this.props.servings,
       food: {
-        label: this.props.label,
-        fat: this.props.fat,
-        protein: this.props.protein,
-        calories: this.props.calories,
-        carbs: this.props.carbs
+        label: props.label,
+        fat: this.fat * this.props.servings,
+        protein: this.protein * this.props.servings,
+        calories: this.calories * this.props.servings,
+        carbs: this.carbs * this.props.servings
       }
-
     }
+  }
 
     handleTableRowClick = () => {
       this.setState(prevState => ({visible: !prevState.visible}))
@@ -26,12 +35,14 @@ class Food extends React.Component {
        return { ...prevState,
           value: e.target.value,
           food: { ...prevState.food,
-            fat: prevState.food.fat * e.target.value,
-            protein: prevState.food.protein * e.target.value,
-            calories: prevState.food.calories * e.target.value,
-            carbs: prevState.food.carbs * e.target.value
+            fat: Math.ceil(this.fat * e.target.value),
+            protein: Math.ceil(this.protein * e.target.value),
+            calories: Math.ceil(this.calories * e.target.value),
+            carbs: Math.ceil(this.carbs * e.target.value)
           }
         }
+      }, () => {
+        this.props.updateEntry(this.props.entry_id, this.state.value)
       })
     }
 
