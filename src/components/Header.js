@@ -10,7 +10,7 @@ const Header = () => {
       </Link>
 
       <div className="right menu">
-        <Link to="/" className="item">
+        <Link to="/logs" className="item">
           Today's Log
         </Link>
 
