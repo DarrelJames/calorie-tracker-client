@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
-import history from '../history'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
+
 export default class DaySelect extends Component {
   constructor(props) {
     super(props)
-    
+
     const [year, month, day] = props.log.date.split('-')
     this.state = {
       startDate: new Date(year, month - 1, day)
