@@ -7,7 +7,7 @@ import {
   LOG_IN,
   LOG_OUT,
   CREATE_ENTRY,
-  // UPDATE_ENTRY,
+  UPDATE_ENTRY,
   // DELETE_ENTRY,
   FETCH_LOGS,
   FETCH_LOG_SUCCESS,
@@ -25,7 +25,7 @@ export const signUp = formValues => async dispatch => {
 
   localStorage.setItem('token', token)
   dispatch({ type: SIGN_UP, payload: token})
-  history.push('/')
+  history.push('/profile')
 }
 
 export const logIn = formValues => async dispatch => {
@@ -34,7 +34,7 @@ export const logIn = formValues => async dispatch => {
 
   localStorage.setItem('token', token)
   dispatch({ type: LOG_IN, payload: token})
-  history.push('/')
+  history.push('/logs')
 }
 
 export const logOut = () => async (dispatch) => {
@@ -62,6 +62,12 @@ export const createEntry = values => async (dispatch,getState) => {
 
   dispatch({ type: CREATE_ENTRY, payload: response.data})
   history.push(`/logs/${response.data.date}`)
+}
+
+export const updateEntry = (entry_id , value) => async dispatch => {
+  const response = await api.patch(`/entries/${entry_id}`, {servings: value})
+
+  dispatch({ type: UPDATE_ENTRY, payload: response.data})
 }
 
 export const fetchLogs = () => async dispatch => {
