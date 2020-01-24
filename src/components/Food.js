@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { updateEntry } from '../actions'
+import { updateEntry, deleteEntry } from '../actions'
 class Food extends React.Component {
     state = {
       visible: false,
@@ -39,6 +39,10 @@ class Food extends React.Component {
 
       this.props.updateEntry(this.props.entry_id, this.state.value)
     }
+    handleDeleteClick = () => {
+
+      this.props.deleteEntry(this.props.entry_id)
+    }
 
     renderEdit = () => {
       if (this.state.visible) {
@@ -46,18 +50,28 @@ class Food extends React.Component {
           <tr>
             <td colSpan='5'>
               <div className='ui form'>
-                <div className='field'>
-                  <input
-                    type='text'
-                    className='ui input'
-                    style={{width: '50px'}}
-                    value={this.state.value}
-                    onChange={e => this.handleChange(e)}
-                  ></input>
-                  <div onClick={this.handleEditClick} className="ui positive button">
-                    Edit
+                <div className='inline fields'>
+                  <div className='field'>
+                    <input
+                      type='text'
+                      className='ui input'
+                      style={{width: '50px'}}
+                      value={this.state.value}
+                      onChange={e => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className='field'>
+                    <div onClick={this.handleEditClick} className="ui positive button">
+                      Edit
+                    </div>
+                  </div>
+                  <div className='field'>
+                    <div onClick={this.handleDeleteClick} className="ui negative button">
+                      Remove
+                    </div>
                   </div>
                 </div>
+
               </div>
             </td>
           </tr>
@@ -80,4 +94,4 @@ class Food extends React.Component {
       )}
 }
 
-export default connect(null, { updateEntry })(Food)
+export default connect(null, { updateEntry, deleteEntry })(Food)
