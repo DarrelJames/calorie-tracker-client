@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FoodSearchForm from '../components/FoodForm'
+import FoodSearchForm from '../components/FoodSearchForm'
 import FoodSearchItems from '../components/FoodSearchItems'
 import { connect } from 'react-redux'
 import { searchFood } from '../actions'
@@ -12,7 +12,7 @@ import { searchFood } from '../actions'
   render() {
     return (
       <>
-        <FoodForm onSubmit={this.handleSubmit}/>
+        <FoodSearchForm onSubmit={this.handleSubmit}/>
 
         <FoodSearchItems {...this.props} foods={this.props.foods} searching={this.props.searching}/>
 
