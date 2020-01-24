@@ -13,7 +13,7 @@ class LogIn extends Component {
   render() {
     return (
       <div className='ui middle aligned center aligned grid'>
-        <div className='column' style={{maxWidth: "450px"}}>
+        <div className='column' style={{maxWidth: "450px", marginTop: '150px' }}>
           <LogInForm onSubmit={this.onSubmit}/>
           <SignUpMessage />
         </div>
