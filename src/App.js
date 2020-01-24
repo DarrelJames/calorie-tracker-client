@@ -10,14 +10,17 @@ import LogContainer from './containers/LogContainer'
 import FoodSearch from './containers/FoodSearch'
 import PrivateRoute from './components/PrivateRoute'
 import Account from './containers/Account'
-
-function App() {
+import LandingPage from './components/LandingPage'
+import { connect } from 'react-redux'
+import './css/index.css'
+function App(props) {
   return (
     <div className="ui container">
       <Router history={history}>
         <>
           {/* <LogOut /> */}
-          <Header/>
+          {props.token && <Header/>}
+            <Route path='/' exact component={LandingPage} />
             <PrivateRoute path='/logs' exact component={LogContainer} />
             <PrivateRoute path='/logs/:date' exact component={LogContainer} />
             <Route path='/login' component={LogIn} />
@@ -30,5 +33,7 @@ function App() {
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = ({auth: {token}}) => {
+  return {token}
+}
+export default connect(mapStateToProps)(App);
