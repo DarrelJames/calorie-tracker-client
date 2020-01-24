@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action ) => {
     case CREATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
     case UPDATE_ENTRY:
-      return { ...state, [action.payload.date]: action.payload }
+      return Object.assign({}, state, state[state.date].entries.map(entry => entry.id === action.payload.id ? action.payload : entry))      
     case DELETE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
 
