@@ -47,7 +47,7 @@ class FoodSearchItem extends Component {
    handleAddClick = () => {
      const query = new URLSearchParams(this.props.search)
 
-     this.props.createEntry({category: query.get('category'), foods_attributes: [{label: this.props.label, fat: this.fat, protein: this.protein, calories: this.calories, carbs: this.carbs}]})
+     this.props.createEntry({category: query.get('category'),servings: this.state.value, foods_attributes: [{label: this.props.label, fat: this.fat, protein: this.protein, calories: this.calories, carbs: this.carbs}]})
    }
 
    renderAdd = () => {
