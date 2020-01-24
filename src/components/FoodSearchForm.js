@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { debounce } from 'lodash'
-class FoodForm extends Component {
+
+class FoodSearchForm extends Component {
 
   constructor(props) {
     super(props)
@@ -24,7 +25,7 @@ class FoodForm extends Component {
   }
 
   startSearch = () => {
-    if (this.state.searchTerm.length > 2) {      
+    if (this.state.searchTerm.length > 2) {
       this.props.onSubmit(this.state.searchTerm)
     }
   }
@@ -35,7 +36,7 @@ class FoodForm extends Component {
 
 
         <div className="ui icon input" >
-
+          
           <input
             className='prompt'
             name='searchTerm'
@@ -55,4 +56,4 @@ class FoodForm extends Component {
   }
 
 }
-export default (FoodForm)
+export default (FoodSearchForm)
