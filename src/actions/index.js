@@ -45,12 +45,13 @@ export const logOut = () => async (dispatch) => {
 
 export const searchFood = searchTerm => async (dispatch) => {
   dispatch({ type: SEARCHING_FOOD})
+  
   const response = await edamam.get('',{
     params: {
 
       'app_id': process.env.REACT_APP_EDAMAM_ID,
       'app_key': process.env.REACT_APP_EDAMAM_KEY,
-      ingr: searchTerm[0]
+      ingr: searchTerm
   }})
 
 
