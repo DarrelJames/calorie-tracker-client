@@ -57,8 +57,9 @@ export const logIn = formValues => async dispatch => {
 export const logOut = () => async (dispatch) => {
   await api.delete('/logout')
 
-  dispatch({ type: LOG_OUT})
   localStorage.removeItem('token')
+  dispatch({ type: LOG_OUT})
+
   history.push('/login')
 }
 
@@ -81,12 +82,11 @@ export const createEntry = values => async (dispatch,getState) => {
   const response = await api.post('/entries', {log_id: getState().logs[getState().logs.date].id, entry: {...values}})
 
   dispatch({ type: CREATE_ENTRY, payload: response.data})
-  history.push(`/logs/${response.data.date}`)
+  history.push(`/logs/${getState().logs.date}`)
 }
 
 export const updateEntry = (entry_id , value) => async dispatch => {
   const response = await api.patch(`/entries/${entry_id}`, {servings: value})
-
   dispatch({ type: UPDATE_ENTRY, payload: response.data})
 }
 export const deleteEntry = (entry_id) => async dispatch => {
