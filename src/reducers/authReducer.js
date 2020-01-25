@@ -27,12 +27,12 @@ export default (state = INITIAL_STATE, action) => {
     case LOG_IN_START:
       return { ...state, status: 'loading'}
     case LOG_IN_SUCCESS:
-      return { ...state, ...INITIAL_STATE }
+      return { ...state, status: 'success', token: action.payload, errorStatusCode: '' }
     case LOG_IN_FAILURE:
       return { ...state, status: 'error', message: action.payload.data, errorStatusCode: action.payload.status }
 
     case LOG_OUT:
-      return { ...state, token: null }
+      return { ...state,status:'idle', token: null}
     default:
       return state
   }

@@ -3,13 +3,10 @@ import { connect } from 'react-redux'
 import { logOut } from '../actions'
 
 
-const LogOut = ({logOut}) => {
-  const handleLogOut = () => {
-    logOut()
-  }
+const LogOut = ({logOut}) => {  
 
   return (
-    <button onClick={handleLogOut}>Log Out</button>
+    <button onClick={() => logOut()}>Log Out</button>
   )
 }
 
