@@ -15,6 +15,6 @@ const MessageAlert = ({message, status}) => {
   }
 }
 
-const mapStateToProps = ({ auth: { message, status }}) => ({message})
+const mapStateToProps = ({ auth: { message, status }}) => ({message, status})
 
 export default connect(mapStateToProps)(MessageAlert);
