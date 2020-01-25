@@ -34,6 +34,7 @@ class SignUp extends React.Component {
   };
 
   render() {
+    const className = `ui button primary ${this.props.status === 'loading' ? 'loading' : ''}`
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -53,7 +54,7 @@ class SignUp extends React.Component {
             label="Enter Password"
             placeholder="password"
           />
-          <button className="ui button primary">Sign Up</button>
+          <button className={className}>Sign Up</button>
         </div>
       </form>
     );

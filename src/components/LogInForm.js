@@ -33,6 +33,7 @@ class LogInForm extends React.Component {
   };
 
   render() {
+    const className = `ui button primary ${this.props.status === 'loading' ? 'loading' : ''}`
     return (
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -51,7 +52,7 @@ class LogInForm extends React.Component {
               placeholder="Enter Password"
               type="password"
             />
-            <button className="ui button primary">Log In</button>
+            <button className={className}>Log In</button>
           </div>
         </form>
     );
