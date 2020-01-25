@@ -9,6 +9,7 @@ import Header from './components/Header'
 import LogContainer from './containers/LogContainer'
 import FoodSearch from './containers/FoodSearch'
 import PrivateRoute from './components/PrivateRoute'
+import PublicRoute from './components/PublicRoute'
 import Account from './containers/Account'
 import LandingPage from './components/LandingPage'
 import { connect } from 'react-redux'
@@ -18,13 +19,13 @@ function App(props) {
     <div className="ui container">
       <Router history={history}>
         <>
-          {/* <LogOut /> */}
-          {props.token && <Header/>}
-            <Route path='/' exact component={LandingPage} />
+
+          <Header/>
+            <PublicRoute path='/' exact component={LandingPage} />
             <PrivateRoute path='/logs' exact component={LogContainer} />
             <PrivateRoute path='/logs/:date' exact component={LogContainer} />
-            <Route path='/login' component={LogIn} />
-            <Route path='/signup' component={Registration} />
+            <PublicRoute path='/login' component={LogIn} />
+            <PublicRoute path='/signup' component={Registration} />
             <PrivateRoute path='/entries/new' component={FoodSearch} />
             <PrivateRoute path='/profile' component={Account} />
 
