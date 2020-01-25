@@ -26,12 +26,9 @@ const Header = ({token}) => {
       <Link to="/" className="header item">
         <img src={Logo} className='ui mini image' alt='logo'/>
         Calorie Tracker
-        {renderLinks()}
-
       </Link>
 
-
-
+      {renderLinks()}
 
     </div>
   );
