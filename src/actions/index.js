@@ -3,8 +3,12 @@ import session from '../apis/session'
 import edamam from '../apis/edamam'
 import history from '../history'
 import {
-  SIGN_UP,
-  LOG_IN,
+  SIGN_UP_START,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+  LOG_IN_START,
+  LOG_IN_SUCCESS,
+  LOG_IN_FAILURE,
   LOG_OUT,
   CREATE_ENTRY,
   UPDATE_ENTRY,
@@ -19,33 +23,48 @@ import {
   SELECT_DAY
 } from './types'
 import moment from 'moment'
-export const signUp = formValues => async dispatch => {
-  const response = await session.post('/signup', {user: { ...formValues }})
-  const token = response.headers.authorization.split(' ')[1]
 
-  localStorage.setItem('token', token)
-  dispatch({ type: SIGN_UP, payload: token})
-  history.push('/profile')
+export const signUp = formValues => async dispatch => {
+  dispatch( {type: SIGN_UP_START})
+  try {
+    const response = await session.post('/signup', {user: { ...formValues }})
+    console.log(response);
+    const token = response.headers.authorization.split(' ')[1]
+
+    dispatch({ type: SIGN_UP_SUCCESS, payload: token})
+    localStorage.setItem('token', token)
+    history.push('/profile')
+  } catch (e) {
+      dispatch( { type: SIGN_UP_FAILURE, payload:  e.response.data.errors.detail.user})
+  }
 }
 
 export const logIn = formValues => async dispatch => {
-  const response = await session.post('/login', {user: { ...formValues }})
-  const token = response.headers.authorization.split(' ')[1]
+  dispatch( {type: LOG_IN_START})
+  try {
+    const response = await session.post('/login', {user: { ...formValues }})
+    const token = response.headers.authorization.split(' ')[1]
 
-  localStorage.setItem('token', token)
-  dispatch({ type: LOG_IN, payload: token})
-  history.push('/logs')
+    localStorage.setItem('token', token)
+    dispatch({ type: LOG_IN_SUCCESS, payload: token})
+    history.push('/logs')
+  } catch (e) {
+    dispatch( { type: LOG_IN_FAILURE, payload: e.response})
+  }
+
 }
 
 export const logOut = () => async (dispatch) => {
   await api.delete('/logout')
 
   dispatch({ type: LOG_OUT})
+  localStorage.removeItem('token')
+  history.push('/login')
 }
 
 export const searchFood = searchTerm => async (dispatch) => {
   dispatch({ type: SEARCHING_FOOD})
-  
+
   const response = await edamam.get('',{
     params: {
 
@@ -71,9 +90,9 @@ export const updateEntry = (entry_id , value) => async dispatch => {
   dispatch({ type: UPDATE_ENTRY, payload: response.data})
 }
 export const deleteEntry = (entry_id) => async dispatch => {
-  const response = await api.delete(`/entries/${entry_id}`)
+  await api.delete(`/entries/${entry_id}`)
 
-  dispatch({ type: DELETE_ENTRY, payload: response.data})
+  dispatch({ type: DELETE_ENTRY, payload: entry_id})
 }
 
 export const fetchLogs = () => async dispatch => {
