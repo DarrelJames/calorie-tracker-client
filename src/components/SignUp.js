@@ -41,17 +41,18 @@ class SignUp extends React.Component {
         className="ui large form error"
       >
         <div className='ui stacked segment'>
-          <Field name="name" component={this.renderInput} placeholder="Enter Name" />
+          <Field name="name" component={this.renderInput} placeholder="Enter Name" type='text'/>
           <Field
             name="email"
             component={this.renderInput}
             placeholder="Enter Email"
+            type='text'
           />
 
           <Field
             name="password"
             component={this.renderInput}
-            label="Enter Password"
+            type="password"
             placeholder="password"
           />
           <button className={className}>Sign Up</button>
