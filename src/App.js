@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import Registration from './containers/Registration'
 import LogIn from './containers/LogIn'
@@ -12,7 +12,7 @@ import PrivateRoute from './components/PrivateRoute'
 import PublicRoute from './components/PublicRoute'
 import Account from './containers/Account'
 import LandingPage from './components/LandingPage'
-import { connect } from 'react-redux'
+
 import './css/index.css'
 function App(props) {
   return (
@@ -34,7 +34,5 @@ function App(props) {
     </div>
   );
 }
-const mapStateToProps = ({auth: {token}}) => {
-  return {token}
-}
-export default connect(mapStateToProps)(App);
+
+export default App;
