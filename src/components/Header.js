@@ -37,7 +37,7 @@ const Header = ({token}) => {
   );
 };
 const mapStateToProps = ({ auth: {token}}) => {
-  return token
+  return {token}
 }
 
 export default connect(mapStateToProps)(Header);
