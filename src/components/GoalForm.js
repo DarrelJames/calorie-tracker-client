@@ -71,25 +71,25 @@ class GoalForm extends React.Component {
   }
 }
 
-const validate = formValues => {
-  const errors = {};
-
-  if (!formValues.carbs) {
-    errors.carbs = 'You must enter a carbs';
-  }
-
-  if (!formValues.fat) {
-    errors.fat = 'You must enter a fat';
-  }
-  if (!formValues.protein) {
-    errors.protein = 'You must enter a protein';
-  }
-  if (!formValues.calories) {
-    errors.calories = 'You must enter a calories';
-  }
-
-  return errors;
-};
+// const validate = formValues => {
+//   const errors = {};
+//
+//   if (!formValues.carbs) {
+//     errors.carbs = 'You must enter a carbs';
+//   }
+//
+//   if (!formValues.fat) {
+//     errors.fat = 'You must enter a fat';
+//   }
+//   if (!formValues.protein) {
+//     errors.protein = 'You must enter a protein';
+//   }
+//   if (!formValues.calories) {
+//     errors.calories = 'You must enter a calories';
+//   }
+//
+//   return errors;
+// };
 
 export default reduxForm({
   form: 'goal',
