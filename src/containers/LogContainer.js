@@ -4,6 +4,7 @@ import MealGroup from './MealGroup'
 import DaySelect from '../components/DaySelect'
 import { fetchLog, selectDay } from '../actions'
 import { connect } from 'react-redux'
+import history from '../history'
 
 
 class LogContainer extends Component {
@@ -12,7 +13,7 @@ class LogContainer extends Component {
     if (this.props.match.params.date) {
       this.props.fetchLog(this.props.match.params.date)
     } else {
-      this.props.fetchLog(this.props.logs.date)
+      history.push(`/logs/${this.props.logs.date}`)
     }
   }
 
