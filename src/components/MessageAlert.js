@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const MessageAlert = ({message, status}) => {
   const className = `ui message ${status === 'success' ? 'positive' : 'negative'}`
-  if (status === "success" || status === "error"){
+  if (status === "success" || status === "error"  && message){
     return (
       <div className={className}>
         <p>{message}</p>
