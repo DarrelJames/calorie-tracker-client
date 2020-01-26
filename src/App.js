@@ -12,15 +12,16 @@ import PrivateRoute from './components/PrivateRoute'
 import PublicRoute from './components/PublicRoute'
 import Account from './containers/Account'
 import LandingPage from './components/LandingPage'
-
+import { connect } from 'react-redux'
 import './css/index.css'
-function App(props) {
+
+function App({token}) {
   return (
-    <div className="ui container">
+    <div className="">
       <Router history={history}>
         <>
 
-          <Header/>
+          {token && <Header/>}
             <PublicRoute path='/' exact component={LandingPage} />
             <PrivateRoute path='/logs' exact component={LogContainer} />
             <PrivateRoute path='/logs/:date' exact component={LogContainer} />
@@ -35,4 +36,6 @@ function App(props) {
   );
 }
 
-export default App;
+const mapStateToProps = ({ auth: { token }}) => ({token})
+
+export default connect(mapStateToProps)(App);
