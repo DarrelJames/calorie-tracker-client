@@ -8,15 +8,16 @@ const PrivateRoute = ({
   token,
   errorStatusCode,
   ...rest
-}) => (
-  <Route {...rest} render={ props => (
+}) => {
+  return  (
+    <Route {...rest} render={ props => (
     token && errorStatusCode !== 401 ? (
       <Component {...props} />
     ) : (
       <Redirect to="/login" />
     )
   )}/>
-)
+)}
 
 const mapStateToProps = ({ auth: {token, errorStatusCode} }) => ({
   errorStatusCode,

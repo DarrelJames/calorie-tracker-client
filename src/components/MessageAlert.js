@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'
-
+import { Message } from 'semantic-ui-react'
 
 const MessageAlert = ({message, status}) => {
-  const className = `ui message ${status === 'success' ? 'positive' : 'negative'}`
-  if (status === "success" || status === "error"  && message){
+  const messageType = status === 'success' ? ({positive: true}) : ({negative: true})
+  if ((status === "success" || status === "error")  && message){
     return (
-      <div className={className}>
-        <p>{message}</p>
-      </div>
-    )
+        <Message {...messageType}>
+          <p>{message}</p>
+        </Message>
+        )
   } else {
-    return <></>
+      return <></>
   }
 }
 
