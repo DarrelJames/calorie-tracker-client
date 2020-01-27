@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Form, Button, Segment, Message} from 'semantic-ui-react'
 
 class SignUp extends React.Component {
   componentWillUnmount() {
@@ -9,22 +10,21 @@ class SignUp extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
+        <Message negative>
+          <Message.Header content={error}/>
+        </Message>
       );
     }
   }
 
   renderInput = ({ input, placeholder, type, meta }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const error = meta.error && meta.touched ? true : false
     return (
-      <div className={className}>
-        <div className='ui left input'>
-          <input {...input} placeholder={placeholder} autoComplete="off" type={type}/>
-        </div>
+      <>
+        <Form.Input error={error} {...input} fluid icon='user' iconPosition='left' placeholder={placeholder} type={type} />
+
         {this.renderError(meta)}
-      </div>
+      </>
     );
   };
 
@@ -34,13 +34,10 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const className = `ui button primary ${this.props.status === 'loading' ? 'loading' : ''}`
+    const loading = this.props.status === 'loading' ? true : false
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className="ui large form error"
-      >
-        <div className='ui stacked segment'>
+      <Form size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <Segment stacked>
           <Field name="name" component={this.renderInput} placeholder="Enter Name" type='text'/>
           <Field
             name="email"
@@ -55,9 +52,11 @@ class SignUp extends React.Component {
             type="password"
             placeholder="password"
           />
-          <button className={className}>Sign Up</button>
-        </div>
-      </form>
+          <Button loading={loading} primary fluid size='large'>
+            Signup
+          </Button>
+          </Segment>
+        </Form>
     );
   }
 }

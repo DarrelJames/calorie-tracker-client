@@ -1,29 +1,26 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import { Form, Button, Segment, Message} from 'semantic-ui-react'
 class LogInForm extends React.Component {
 
   renderError({ error, touched }) {
     if (touched && error) {
       return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
+        <Message negative>
+          <Message.Header content={error}/>
+        </Message>
       );
     }
   }
 
   renderInput = ({ input, placeholder, type, meta }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const error = meta.error && meta.touched ? true : false
     return (
-      <div className={className}>
+      <>
+        <Form.Input error={error} {...input} fluid icon='user' iconPosition='left' placeholder={placeholder} type={type} />
 
-        <div className='ui left input'>
-          <input {...input} autoComplete="off" type={type} placeholder={placeholder}/>
-
-        </div>
         {this.renderError(meta)}
-      </div>
+      </>
     );
   };
 
@@ -33,13 +30,12 @@ class LogInForm extends React.Component {
   };
 
   render() {
-    const className = `ui button primary ${this.props.status === 'loading' ? 'loading' : ''}`
+    const loading = this.props.status === 'loading' ? true : false
+
     return (
-        <form
-          onSubmit={this.props.handleSubmit(this.onSubmit)}
-          className="ui large form error"
-        >
-          <div className='ui stacked segment'>
+      <>
+        <Form size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <Segment stacked>
             <Field
               name="email"
               component={this.renderInput}
@@ -52,10 +48,13 @@ class LogInForm extends React.Component {
               placeholder="Enter Password"
               type="password"
             />
-            <button className={className}>Log In</button>
-          </div>
-        </form>
-    );
+            <Button loading={loading} primary fluid size='large'>
+              Login
+            </Button>
+          </Segment>
+        </Form>
+      </>
+  );
   }
 }
 
