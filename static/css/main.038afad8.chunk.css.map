@@ -1,0 +1,1 @@
+{"version":3,"sources":["fullscreenform.css","index.css"],"names":[],"mappings":"AAAA,QACE,eAAgB,CAChB,gBACF,CCHA,KACE,wBACF","file":"main.038afad8.chunk.css","sourcesContent":[".column {\n  max-width: 450px;\n  margin-top: 150px;\n}\n","body {\n  background-color: #DADADA;\n}\n"]}
