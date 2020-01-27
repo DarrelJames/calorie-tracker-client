@@ -4,7 +4,7 @@ import { logIn } from '../actions'
 import LogInForm from '../components/LogInForm'
 import RegistrationMessage from '../components/RegistrationMessage'
 import MessageAlert from '../components/MessageAlert'
-import '../css/fullscreenform.css'
+import { Grid, Header } from 'semantic-ui-react'
 
 class LogIn extends Component {
 
@@ -14,8 +14,13 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className='ui middle aligned center aligned grid'>
-        <div className='column' >
+      <Grid
+        textAlign='center'
+        style={{ height: '100vh'}} verticalAlign='middle' >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h2" textAlign="center">
+            Login to Your Account
+          </Header>
           <LogInForm onSubmit={this.onSubmit} status={this.props.status}/>
           <MessageAlert message={this.props.message}/>
           <RegistrationMessage
@@ -23,12 +28,14 @@ class LogIn extends Component {
             link='/signup'
             linkText='Sign Up'
           />
-        </div>
-      </div>
+
+        </Grid.Column>
+      </Grid>
     );
   }
 
 }
 
+const mapStateToProps = ({ auth: { message, status }}) => ({message, status})
 
-export default connect(null, { logIn })(LogIn);
+export default connect(mapStateToProps, { logIn })(LogIn);

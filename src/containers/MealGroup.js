@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Food from '../components/Food'
 import { connect } from 'react-redux'
+import { Table, Icon, Transition } from 'semantic-ui-react'
 
 class MealGroup extends Component {
 
@@ -9,36 +10,38 @@ class MealGroup extends Component {
 
     if ( this.props.logSet){
       const entries = this.props.log.entries.filter(entry => entry.category === this.props.category)
-      return entries.map(entry => entry.foods.map((food) => (<Food servings={entry.servings} entry_id={entry.id} key={food.id} {...food} /> )
+      return entries.map(entry => entry.foods.map((food) => {
+        return <Transition.Group animation='slide down' duration='500' as={Food} servings={entry.servings} entry_id={entry.id} key={food.id} {...food} />
+      }
       ))
     }
   }
   render(){
     return (
 
-      <table className="ui red table">
-        <thead>
-          <tr>
-            <th className='six wide'>{this.props.category}</th>
-            <th className='two wide'>Carbs</th>
-            <th className='two wide'>Protein</th>
-            <th className='two wide'>Fat</th>
-            <th className='three wide'>Calories</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table structured unstackable selectable>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>{this.props.category}</Table.HeaderCell>
+            <Table.HeaderCell>Carbs</Table.HeaderCell>
+            <Table.HeaderCell>Protein</Table.HeaderCell>
+            <Table.HeaderCell>Fat</Table.HeaderCell>
+            <Table.HeaderCell>Calories</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
 
           {this.renderFoods()}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>
-            <i className="plus icon green"/>
-            <Link to={`/entries/new?category=${this.props.category}`}>Add Food Item</Link>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+        </Table.Body>
+        <Table.Footer>
+          <Table.Row>
+            <Table.Cell>
+              <Icon color='green' name='plus'/>
+              <Link to={`/entries/new?category=${this.props.category}`}>Add Food Item</Link>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Footer>
+      </Table>
     )
   }
 }
