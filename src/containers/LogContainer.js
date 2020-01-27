@@ -5,7 +5,7 @@ import DaySelect from '../components/DaySelect'
 import { fetchLog, selectDay } from '../actions'
 import { connect } from 'react-redux'
 import history from '../history'
-
+import { Form } from 'semantic-ui-react'
 
 class LogContainer extends Component {
 
@@ -31,8 +31,9 @@ class LogContainer extends Component {
       return <div>Loading</div>
     return (
         <div>
-          <div><DaySelect selectDay={(date) => this.props.selectDay(date)}log={this.props.logs}/></div>
-
+          <Form align='center'>
+            <Form.Field control={DaySelect} selectDay={(date) => this.props.selectDay(date)}log={this.props.logs}/>
+          </Form>
           <MealGroup category="Breakfast"/>
           <MealGroup category="Lunch"/>
           <MealGroup category="Dinner"/>

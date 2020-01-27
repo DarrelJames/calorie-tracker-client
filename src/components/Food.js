@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { updateEntry, deleteEntry } from '../actions'
 import { debounce } from 'lodash'
+import { Table, Form, Input, Transition} from 'semantic-ui-react'
+import RemoveModal from './RemoveModal'
+
 class Food extends React.Component {
 
   constructor(props) {
@@ -51,8 +54,6 @@ class Food extends React.Component {
 
     updateServings = () => this.props.updateEntry(this.props.entry_id, this.state.value)
 
-
-
     handleEditClick = () => {
 
       this.props.updateEntry(this.props.entry_id, this.state.value)
@@ -65,31 +66,21 @@ class Food extends React.Component {
     renderEdit = () => {
       if (this.state.visible) {
         return (
-          <tr>
-            <td colSpan='5'>
-              <div className='ui form'>
-                <div className='inline fields'>
-                  <div className='field'>
-                    <input
-                      type='text'
-                      className='ui input'
-                      style={{width: '50px'}}
+            <Table.Cell colSpan='5' collapsing>
+              <Form>
+                <Form.Group inline>
+                  <Form.Field>
+                    <label>Servings (100g)</label>
+                    <Input
                       value={this.state.value}
                       onChange={e => this.handleChange(e)}
+                      style={{width: '50px'}}
                     />
-                    <label>Servings (100g)</label>
-                  </div>
-
-                  <div className='field'>
-                    <div onClick={this.handleDeleteClick} className="ui negative button">
-                      Remove
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </td>
-          </tr>
+                  </Form.Field>
+                  <RemoveModal label={this.state.food.label} entry={this.props.entry_id}/>
+                </Form.Group>
+              </Form>
+            </Table.Cell>
         )
       }
     }
@@ -97,14 +88,16 @@ class Food extends React.Component {
     render(){
       return (
         <>
-          <tr style={{cursor: 'pointer'}} onClick={this.handleTableRowClick}>
-            <td>{this.state.food.label}</td>
-            <td>{this.state.food.carbs}</td>
-            <td>{this.state.food.protein}</td>
-            <td>{this.state.food.fat}</td>
-            <td>{this.state.food.calories}</td>
-          </tr>
-          {this.renderEdit()}
+          <Table.Row onClick={this.handleTableRowClick}>
+            <Table.Cell>{this.state.food.label}</Table.Cell>
+            <Table.Cell>{this.state.food.carbs}</Table.Cell>
+            <Table.Cell>{this.state.food.protein}</Table.Cell>
+            <Table.Cell>{this.state.food.fat}</Table.Cell>
+            <Table.Cell>{this.state.food.calories}</Table.Cell>
+          </Table.Row>
+          <Transition.Group as={Table.Row} animation='slide down' duration={500}>
+            {this.renderEdit()}
+          </Transition.Group>
         </>
       )}
 }

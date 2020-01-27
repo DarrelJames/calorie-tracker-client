@@ -17,7 +17,7 @@ import './css/index.css'
 
 function App({token}) {
   return (
-    <div className="">
+    <div className="ui container">
       <Router history={history}>
         <>
 
