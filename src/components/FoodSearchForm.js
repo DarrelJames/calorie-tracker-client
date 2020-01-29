@@ -14,11 +14,13 @@ class FoodSearchForm extends Component {
   }
 
 
-
+  handleClear = () => {
+    this.setState({searchTerm: ''})
+  }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      searchTerm: e.target.value
     }, () => {
         this.startSearch()
     })
@@ -36,7 +38,7 @@ class FoodSearchForm extends Component {
 
 
         <div className="ui icon input" >
-          
+
           <input
             className='prompt'
             name='searchTerm'
@@ -47,7 +49,8 @@ class FoodSearchForm extends Component {
           >
           </input>
 
-          <i className="search icon"> </i>
+          {this.state.searchTerm && <i onClick={this.handleClear} className="times icon link red"/>}
+          {!this.state.searchTerm && <i className="search icon"/>}
         </div>
 
 
