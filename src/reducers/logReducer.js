@@ -30,8 +30,8 @@ export default (state = INITIAL_STATE, action ) => {
     case CREATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
     case UPDATE_ENTRY:
-
-      return {...state, [state.date]: { ...state[state.date], entries: state[state.date].entries.map(entry => entry.id === action.payload.id ? action.payload : entry)}}
+      const type = action.payload.category
+      return {...state, [state.date]: { ...state[state.date], [type]: state[state.date][type].map(entry => entry.id === action.payload.id ? action.payload : entry)}}
 
     case DELETE_ENTRY:
       return {...state, [state.date]: { ...state[state.date], entries: state[state.date].entries.filter(entry => entry.id !== action.payload)}}
