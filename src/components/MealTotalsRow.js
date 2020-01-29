@@ -1,7 +1,6 @@
 import React from 'react'
 import { Table, Header } from 'semantic-ui-react'
 const MealTotalsRow = ({carbs, calories, protein, fat}) => {
-  console.log({carbs, calories, protein, fat});
   return (
   <Table.Footer>
     <Table.Row>
@@ -17,7 +16,7 @@ const MealTotalsRow = ({carbs, calories, protein, fat}) => {
       <Table.Cell>
         <Header as='h4'>{fat}</Header>
       </Table.Cell>
-      <Table.Cell>
+      <Table.Cell >
         <Header as='h2'>{calories}</Header>
       </Table.Cell>
     </Table.Row>
