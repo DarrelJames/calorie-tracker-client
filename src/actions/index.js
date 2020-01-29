@@ -106,9 +106,29 @@ export const fetchLog = (date) => async dispatch => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
 
   dispatch({ type: FETCH_LOG_START, payload: formattedDate })
-  const response = await api.get(`/logs/${formattedDate}`)
+  const response = await api.get(`/logs/${formattedDate}`)  
+  let log = response.data
 
-  dispatch({type: FETCH_LOG_SUCCESS, payload: response.data})
+  let categories = []
+  let combinedCategories = {
+    Breakfast: [],
+    Lunch: [],
+    Dinner: [],
+    Snacks: []
+  }
+  log.entries.forEach(entry => categories.push(entry.category))
+
+  const distinctCategories = [...new Set(categories)]
+
+  distinctCategories.forEach(cat => {
+    let entry = log.entries.filter(entry => {
+        return cat === entry.category
+    });
+    combinedCategories = {...combinedCategories, [cat]: entry}
+  })
+  log = {...log, ...combinedCategories}
+  delete log.entries
+  dispatch({type: FETCH_LOG_SUCCESS, payload: log})
 }
 
 export const selectDay = day => {
