@@ -42,16 +42,16 @@ class MealGroup extends Component {
       <Table structured unstackable selectable>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{this.props.category}</Table.HeaderCell>
-            <Table.HeaderCell>Carbs</Table.HeaderCell>
-            <Table.HeaderCell>Protein</Table.HeaderCell>
-            <Table.HeaderCell>Fat</Table.HeaderCell>
-            <Table.HeaderCell>Calories</Table.HeaderCell>
+            <Table.HeaderCell width={7}>{this.props.category}</Table.HeaderCell>
+            <Table.HeaderCell width={2}>Carbs</Table.HeaderCell>
+            <Table.HeaderCell width={2}>Protein</Table.HeaderCell>
+            <Table.HeaderCell width={2}>Fat</Table.HeaderCell>
+            <Table.HeaderCell width={3}>Calories</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {this.renderFoods()}
-          <Table.Row colSpan={5}>
+          <Table.Row>
             <Table.Cell>
               <Icon color='green' name='plus'/>
               <Link to={`/entries/new?category=${this.props.category}`}>Add Food Item</Link>
@@ -60,7 +60,7 @@ class MealGroup extends Component {
         </Table.Body>
 
         {(this.props.logSet && this.props.entries.length > 0) &&  <MealTotalsRow {...mealTotals}/>}
-        
+
       </Table>
     )
   }
