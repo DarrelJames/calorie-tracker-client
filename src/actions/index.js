@@ -28,12 +28,11 @@ export const signUp = formValues => async dispatch => {
   dispatch( {type: SIGN_UP_START})
   try {
     const response = await session.post('/signup', {user: { ...formValues }})
-    console.log(response);
     const token = response.headers.authorization.split(' ')[1]
 
     dispatch({ type: SIGN_UP_SUCCESS, payload: token})
-    localStorage.setItem('token', token)
-    history.push('/profile')
+    await localStorage.setItem('token', token)
+    await history.push('/profile')
   } catch (e) {
       dispatch( { type: SIGN_UP_FAILURE, payload:  e.response.data.errors.detail.user})
   }
@@ -106,7 +105,7 @@ export const fetchLog = (date) => async dispatch => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
 
   dispatch({ type: FETCH_LOG_START, payload: formattedDate })
-  const response = await api.get(`/logs/${formattedDate}`)  
+  const response = await api.get(`/logs/${formattedDate}`)
   let log = response.data
 
   let categories = []
