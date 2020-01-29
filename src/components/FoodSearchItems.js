@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FoodSearchItem from './FoodSearchItem'
+import { Table } from 'semantic-ui-react'
 export default class FoodSearchItems extends Component {
 
   renderFoodSearchItems = () => {
@@ -27,20 +28,20 @@ export default class FoodSearchItems extends Component {
       )
     } else if (this.props.foods) {
       return (
-        <table className="ui red table">
-          <thead>
-            <tr>
-              <th className='seven wide'>Food Name</th>
-              <th className='two wide'>Carbs</th>
-              <th className='two wide'>Protein</th>
-              <th className='two wide'>Fat</th>
-              <th className='three wide'>Calories</th>
-            </tr>
-          </thead>
+        <Table unstackable selectable structured>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width={7}>Food Name</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Carbs</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Protein</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Fat</Table.HeaderCell>
+              <Table.HeaderCell width={3}>Calories</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
           <tbody>
             {this.renderFoodSearchItems()}
           </tbody>
-        </table>
+        </Table>
     )} else {
       return <></>
 
