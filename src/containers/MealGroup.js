@@ -52,7 +52,7 @@ class MealGroup extends Component {
         <Table.Body>
           {this.renderFoods()}
           <Table.Row>
-            <Table.Cell>
+            <Table.Cell colSpan={5}>
               <Icon color='green' name='plus'/>
               <Link to={`/entries/new?category=${this.props.category}`}>Add Food Item</Link>
             </Table.Cell>
