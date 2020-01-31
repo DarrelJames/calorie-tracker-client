@@ -88,10 +88,10 @@ export const updateEntry = (entry_id , value) => async dispatch => {
   const response = await api.patch(`/entries/${entry_id}`, {servings: value})
   dispatch({ type: UPDATE_ENTRY, payload: response.data})
 }
-export const deleteEntry = (entry_id) => async dispatch => {
+export const deleteEntry = (entry_id, category) => async dispatch => {  
   await api.delete(`/entries/${entry_id}`)
 
-  dispatch({ type: DELETE_ENTRY, payload: entry_id})
+  dispatch({ type: DELETE_ENTRY, payload: {entry_id, category}})
 }
 
 export const fetchLogs = () => async dispatch => {
@@ -101,6 +101,7 @@ export const fetchLogs = () => async dispatch => {
 
   dispatch({type: FETCH_LOGS, payload: sortedLogs})
 }
+
 export const fetchLog = (date) => async dispatch => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
 
