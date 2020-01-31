@@ -10,7 +10,7 @@ class MealGroup extends Component {
   renderFoods = () => {
     if ( this.props.logSet){
       return this.props.entries.map(entry => entry.foods.map((food) => {
-        return <Transition.Group animation='slide down' duration='500' as={Food} servings={entry.servings} entry_id={entry.id} key={food.id} {...food} />
+        return <Transition.Group animation='slide down' duration='500' as={Food} category={entry.category} servings={entry.servings} entry_id={entry.id} key={food.id} {...food} />
       }
       ))
     }

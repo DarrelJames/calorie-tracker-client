@@ -58,10 +58,6 @@ class Food extends React.Component {
 
       this.props.updateEntry(this.props.entry_id, this.state.value)
     }
-    handleDeleteClick = () => {
-
-      this.props.deleteEntry(this.props.entry_id)
-    }
 
     renderEdit = () => {
       if (this.state.visible) {
@@ -77,7 +73,9 @@ class Food extends React.Component {
                       style={{width: '50px'}}
                     />
                   </Form.Field>
-                  <RemoveModal label={this.state.food.label} entry={this.props.entry_id}/>
+                  <RemoveModal
+                  category ={this.props.category} label={this.state.food.label} entry={this.props.entry_id}
+                  />
                 </Form.Group>
               </Form>
             </Table.Cell>
