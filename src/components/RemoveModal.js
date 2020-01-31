@@ -28,7 +28,7 @@ class RemoveModal extends React.Component {
             <Button basic color='red' inverted onClick={this.close}>
               <Icon name='remove' /> No
             </Button>
-            <Button color='green' inverted onClick={() => this.props.deleteEntry(entry)}>
+            <Button color='green' inverted onClick={() => this.props.deleteEntry(entry, this.props.category)}>
               <Icon name='checkmark' /> Yes
             </Button>
           </Modal.Actions>
