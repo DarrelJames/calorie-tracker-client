@@ -30,11 +30,13 @@ export default (state = INITIAL_STATE, action ) => {
     case CREATE_ENTRY:
       return { ...state, [action.payload.date]: action.payload }
     case UPDATE_ENTRY:
-      const type = action.payload.category
+      let type = action.payload.category
       return {...state, [state.date]: { ...state[state.date], [type]: state[state.date][type].map(entry => entry.id === action.payload.id ? action.payload : entry)}}
 
     case DELETE_ENTRY:
-      return {...state, [state.date]: { ...state[state.date], entries: state[state.date].entries.filter(entry => entry.id !== action.payload)}}
+
+      const category = action.payload.category
+      return {...state, [state.date]: { ...state[state.date], [category]: state[state.date][category].filter(entry => entry.id !== action.payload.entry_id)}}
 
 
     case SELECT_DAY:
