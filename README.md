@@ -38,15 +38,21 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Calorie Tracker</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+    https://calorie-tracker-client.herokuapp.com/
+    <br />
+    Login Credentials or create your own
+    <br />
+    Email: test@email.com
+  <br/>
+    Password: password
     <br />
     <a href="https://github.com/DarrelJames/calorie-tracker-client"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/DarrelJames/calorie-tracker-client">View Demo</a>
+    <a href="https://calorie-tracker-client.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/DarrelJames/calorie-tracker-client/issues">Report Bug</a>
     ·
