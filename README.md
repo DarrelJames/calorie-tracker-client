@@ -184,7 +184,7 @@ Project Link: [https://github.com/darreljames/calorie-tracker-client](https://gi
 [issues-shield]: https://img.shields.io/github/issues/darreljames/calorie-tracker-client.svg?style=flat-square
 [issues-url]: https://github.com/darreljames/calorie-tracker-client/issues
 [license-shield]: https://img.shields.io/github/license/darreljames/calorie-tracker-client.svg?style=flat-square
-[license-url]: https://github.com/darreljames/calorie-tracker-client/blob/master/LICENSE.txt
+[license-url]: https://github.com/darreljames/calorie-tracker-client/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/darreljames
 [product-screenshot]: images/screenshot.png
